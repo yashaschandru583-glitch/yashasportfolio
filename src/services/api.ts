@@ -18,11 +18,12 @@ import {
   initialAchievements,
   initialMessages
 } from '../data/initialData';
+import { safeStorage } from '../utils/storage';
 
 const API_BASE = '/api';
 
 function getAuthHeaders(): HeadersInit {
-  const token = localStorage.getItem('portfolio_admin_token');
+  const token = safeStorage.getItem('portfolio_admin_token');
   const headers: HeadersInit = {
     'Content-Type': 'application/json'
   };
@@ -35,19 +36,19 @@ function getAuthHeaders(): HeadersInit {
 // Local Storage helpers for static GitHub Pages fallback mode
 function getLocalItem<T>(key: string, fallback: T): T {
   try {
-    const raw = localStorage.getItem(`portfolio_${key}`);
+    const raw = safeStorage.getItem(`portfolio_${key}`);
     if (raw) return JSON.parse(raw);
   } catch (e) {
-    console.warn(`Error reading ${key} from localStorage`, e);
+    console.warn(`Error reading ${key} from storage`, e);
   }
   return fallback;
 }
 
 function setLocalItem<T>(key: string, value: T): void {
   try {
-    localStorage.setItem(`portfolio_${key}`, JSON.stringify(value));
+    safeStorage.setItem(`portfolio_${key}`, JSON.stringify(value));
   } catch (e) {
-    console.warn(`Error writing ${key} to localStorage`, e);
+    console.warn(`Error writing ${key} to storage`, e);
   }
 }
 
@@ -121,7 +122,7 @@ export const api = {
       }
       return data.user;
     } catch (err) {
-      const token = localStorage.getItem('portfolio_admin_token');
+      const token = safeStorage.getItem('portfolio_admin_token');
       if (token === 'static_demo_token') {
         return { id: 'admin-1', email: 'admin@developer.com', name: 'Admin', role: 'admin' };
       }

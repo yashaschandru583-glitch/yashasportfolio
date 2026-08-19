@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { IAuthUser } from '../types';
 import { api } from '../services/api';
+import { safeStorage } from '../utils/storage';
 
 interface AuthContextType {
   user: IAuthUser | null;
@@ -17,7 +18,7 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<IAuthUser | null>(null);
-  const [token, setToken] = useState<string | null>(() => localStorage.getItem('portfolio_admin_token'));
+  const [token, setToken] = useState<string | null>(() => safeStorage.getItem('portfolio_admin_token'));
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [showLoginModal, setShowLoginModal] = useState<boolean>(false);
 
@@ -32,7 +33,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setUser(authUser);
       } catch (err) {
         console.warn('Session expired or invalid token');
-        localStorage.removeItem('portfolio_admin_token');
+        safeStorage.removeItem('portfolio_admin_token');
         setToken(null);
         setUser(null);
       } finally {
@@ -44,14 +45,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const login = async (email: string, pass: string) => {
     const res = await api.login(email, pass);
-    localStorage.setItem('portfolio_admin_token', res.token);
+    safeStorage.setItem('portfolio_admin_token', res.token);
     setToken(res.token);
     setUser(res.user);
     setShowLoginModal(false);
   };
 
   const logout = () => {
-    localStorage.removeItem('portfolio_admin_token');
+    safeStorage.removeItem('portfolio_admin_token');
     setToken(null);
     setUser(null);
   };
