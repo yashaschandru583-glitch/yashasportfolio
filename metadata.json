@@ -1,0 +1,8 @@
+{
+  "name": "DevFolio Pro - Full-Stack Developer Portfolio & CMS",
+  "description": "A modern, high-performance full-stack personal developer portfolio with dynamic projects showcase, interactive experience timeline, skill matrix, certifications, resume viewer, contact messaging system, and a secure admin CMS dashboard backed by Express and MongoDB.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
