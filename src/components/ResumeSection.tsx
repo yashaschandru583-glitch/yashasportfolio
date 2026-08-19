@@ -17,6 +17,7 @@ import {
   Globe
 } from 'lucide-react';
 import { IProfileConfig, IExperience, IEducation, ISkill, IAchievement } from '../types';
+import staticProfileImg from '../assets/profile.jpg';
 
 interface ResumeSectionProps {
   profile: IProfileConfig | null;
@@ -107,7 +108,7 @@ export const ResumeSection: React.FC<ResumeSectionProps> = ({
               <div className="flex items-center gap-4">
                 <div className="w-16 h-16 rounded-2xl overflow-hidden border-2 border-indigo-500/40 shadow-md shrink-0 print:hidden">
                   <img
-                    src={profile?.avatarUrl || "/profile.jpg"}
+                    src={profile?.avatarUrl || staticProfileImg}
                     alt={profile?.name || "Yashas C."}
                     referrerPolicy="no-referrer"
                     className="w-full h-full object-cover"

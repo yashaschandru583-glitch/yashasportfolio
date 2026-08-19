@@ -55,7 +55,7 @@ export const Footer: React.FC<FooterProps> = ({ profile, onNavigate }) => {
             </p>
             <div className="flex items-center gap-2 pt-2">
               <a
-                href={profile?.socialLinks.github || 'https://github.com'}
+                href={profile?.socialLinks?.github || 'https://github.com/yashaschandru'}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub Profile"
@@ -64,7 +64,7 @@ export const Footer: React.FC<FooterProps> = ({ profile, onNavigate }) => {
                 <Github className="w-4 h-4" />
               </a>
               <a
-                href={profile?.socialLinks.linkedin || 'https://linkedin.com'}
+                href={profile?.socialLinks?.linkedin || 'https://linkedin.com'}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="LinkedIn Profile"
@@ -73,7 +73,7 @@ export const Footer: React.FC<FooterProps> = ({ profile, onNavigate }) => {
                 <Linkedin className="w-4 h-4" />
               </a>
               <a
-                href={profile?.socialLinks.instagram || 'https://instagram.com'}
+                href={profile?.socialLinks?.instagram || 'https://instagram.com'}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Instagram Profile"
@@ -82,7 +82,7 @@ export const Footer: React.FC<FooterProps> = ({ profile, onNavigate }) => {
                 <Instagram className="w-4 h-4" />
               </a>
               <a
-                href={`mailto:${profile?.socialLinks.email || 'developer@example.com'}`}
+                href={`mailto:${profile?.socialLinks?.email || 'yashaschandru583@gmail.com'}`}
                 aria-label="Send Email"
                 className="p-2.5 rounded-xl bg-white/5 border border-white/10 text-slate-400 hover:text-white hover:border-indigo-500/40 transition-colors"
               >

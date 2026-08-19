@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, Save, Loader2, AlertCircle } from 'lucide-react';
-import { IExperience } from '../../types';
+import { IExperience, ExperienceType } from '../../types';
 
 interface ExperienceEditorModalProps {
   experience: IExperience | null;
@@ -22,7 +22,7 @@ export const ExperienceEditorModal: React.FC<ExperienceEditorModalProps> = ({
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
   const [current, setCurrent] = useState(false);
-  const [type, setType] = useState<'Internship' | 'Full-Time' | 'Freelance' | 'Leadership' | 'Project'>('Internship');
+  const [type, setType] = useState<ExperienceType>('Internship');
   const [descRaw, setDescRaw] = useState('');
   const [techRaw, setTechRaw] = useState('');
   const [loading, setLoading] = useState(false);
@@ -172,10 +172,10 @@ export const ExperienceEditorModal: React.FC<ExperienceEditorModalProps> = ({
                   className="w-full px-3 py-2 rounded-xl bg-slate-950/70 border border-slate-800 text-slate-100 text-xs focus:outline-none focus:border-cyan-500"
                 >
                   <option value="Internship">Internship</option>
-                  <option value="Full-Time">Full-Time</option>
+                  <option value="Full-time">Full-time</option>
                   <option value="Freelance">Freelance</option>
-                  <option value="Leadership">Leadership</option>
-                  <option value="Project">Project</option>
+                  <option value="Technical Project">Technical Project</option>
+                  <option value="College Activity">College Activity</option>
                 </select>
               </div>
 

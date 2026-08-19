@@ -15,6 +15,7 @@ import {
 import { useTheme } from '../context/ThemeContext';
 import { useAuth } from '../context/AuthContext';
 import { IProfileConfig } from '../types';
+import staticProfileImg from '../assets/profile.jpg';
 
 interface NavbarProps {
   profile?: IProfileConfig | null;
@@ -77,16 +78,12 @@ export const Navbar: React.FC<NavbarProps> = ({
           className="flex items-center gap-3 text-left group focus:outline-none cursor-pointer"
         >
           <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl overflow-hidden border border-indigo-500/40 shadow-lg shadow-indigo-600/30 group-hover:scale-105 transition-transform bg-indigo-600 flex items-center justify-center font-bold text-white">
-            {profile?.avatarUrl || '/profile.jpg' ? (
-              <img
-                src={profile?.avatarUrl || '/profile.jpg'}
-                alt={profile?.name || 'Yashas C.'}
-                referrerPolicy="no-referrer"
-                className="w-full h-full object-cover"
-              />
-            ) : (
-              (profile?.name || 'Y').charAt(0).toUpperCase()
-            )}
+            <img
+              src={profile?.avatarUrl || staticProfileImg}
+              alt={profile?.name || 'Yashas C.'}
+              referrerPolicy="no-referrer"
+              className="w-full h-full object-cover"
+            />
           </div>
           <div className="flex items-center gap-2">
             <span className="font-bold text-base sm:text-lg tracking-tight text-white dark:text-white light:text-slate-900 group-hover:text-indigo-400 transition-colors">

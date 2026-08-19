@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import { IProfileConfig } from '../types';
 import { api } from '../services/api';
+import staticProfileImg from '../assets/profile.jpg';
 
 interface AboutProps {
   profile: IProfileConfig | null;
@@ -139,7 +140,7 @@ export const About: React.FC<AboutProps> = ({ profile, onProfileUpdate }) => {
             <div className="relative w-40 h-40 my-3 group">
               <div className="absolute inset-0 rounded-2xl bg-indigo-600/30 blur-lg group-hover:bg-indigo-600/50 transition-all" />
               <img
-                src={localAvatar || profile?.avatarUrl || "/profile.jpg"}
+                src={localAvatar || profile?.avatarUrl || staticProfileImg}
                 alt={profile?.name || "Yashas C."}
                 referrerPolicy="no-referrer"
                 className="relative w-full h-full object-cover rounded-2xl border-2 border-indigo-500/40 shadow-xl group-hover:scale-[1.01] transition-transform duration-300 bg-slate-900"

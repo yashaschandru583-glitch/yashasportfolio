@@ -274,7 +274,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onDataChanged })
     }
   };
 
-  const unreadMessagesCount = messages.filter(m => !m.read).length;
+  const unreadMessagesCount = messages.filter(m => !m.isRead).length;
 
   return (
     <div className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
@@ -722,7 +722,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onDataChanged })
                   <div
                     key={msg.id}
                     className={`rounded-2xl border p-5 transition-all ${
-                      msg.read
+                      msg.isRead
                         ? 'bg-slate-950/40 border-slate-800'
                         : 'bg-cyan-500/5 border-cyan-500/30'
                     }`}
@@ -734,7 +734,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onDataChanged })
                             {msg.name}
                           </h3>
                           <span className="text-xs text-cyan-400">&lt;{msg.email}&gt;</span>
-                          {!msg.read && (
+                          {!msg.isRead && (
                             <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-cyan-500 text-white">
                               New
                             </span>
@@ -767,7 +767,7 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ onDataChanged })
                       </a>
 
                       <div className="flex items-center gap-2">
-                        {!msg.read && (
+                        {!msg.isRead && (
                           <button
                             onClick={() => handleMarkMessageRead(msg.id)}
                             className="px-3 py-1 rounded-lg bg-slate-800 text-slate-300 text-xs font-semibold hover:text-white cursor-pointer"

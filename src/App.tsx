@@ -23,6 +23,15 @@ import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { AdminDashboard } from './components/Admin/AdminDashboard';
 import { AdminLoginModal } from './components/Admin/AdminLoginModal';
+import { ErrorBoundary } from './components/ErrorBoundary';
+import {
+  initialProfile,
+  initialProjects,
+  initialSkills,
+  initialExperience,
+  initialEducation,
+  initialAchievements
+} from './data/initialData';
 import { Sparkles, Shield, ArrowUp } from 'lucide-react';
 
 const PortfolioContent: React.FC = () => {
@@ -30,14 +39,14 @@ const PortfolioContent: React.FC = () => {
   const [activeSection, setActiveSection] = useState<string>('home');
   const [showAdminView, setShowAdminView] = useState<boolean>(false);
 
-  // Entities state
-  const [projects, setProjects] = useState<IProject[]>([]);
-  const [skills, setSkills] = useState<ISkill[]>([]);
-  const [experience, setExperience] = useState<IExperience[]>([]);
-  const [education, setEducation] = useState<IEducation[]>([]);
-  const [achievements, setAchievements] = useState<IAchievement[]>([]);
-  const [profile, setProfile] = useState<IProfileConfig | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  // Entities state with immediate instant fallback
+  const [projects, setProjects] = useState<IProject[]>(initialProjects);
+  const [skills, setSkills] = useState<ISkill[]>(initialSkills);
+  const [experience, setExperience] = useState<IExperience[]>(initialExperience);
+  const [education, setEducation] = useState<IEducation[]>(initialEducation);
+  const [achievements, setAchievements] = useState<IAchievement[]>(initialAchievements);
+  const [profile, setProfile] = useState<IProfileConfig>(initialProfile);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const loadData = async () => {
     try {
@@ -146,10 +155,12 @@ const PortfolioContent: React.FC = () => {
 
 export default function App() {
   return (
-    <ThemeProvider>
-      <AuthProvider>
-        <PortfolioContent />
-      </AuthProvider>
-    </ThemeProvider>
+    <ErrorBoundary>
+      <ThemeProvider>
+        <AuthProvider>
+          <PortfolioContent />
+        </AuthProvider>
+      </ThemeProvider>
+    </ErrorBoundary>
   );
 }
